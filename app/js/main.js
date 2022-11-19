@@ -233,6 +233,7 @@ __webpack_require__.r(__webpack_exports__);
 
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
+const prodModal = document.querySelector('[data-graph-target = "prod-modal"] .modal-content');
 let prodQuantity = 5;
 let dataLength = null;
 const normalPrice = str => {
@@ -289,10 +290,28 @@ if (catalogList) {
           clamp: '22px'
         });
       });
-      const modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]();
+      const modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        isOpen: modal => {
+          const openBtnId = modal.previousActiveElement.dataset.id;
+          loadModalData(openBtnId);
+        }
+      });
     });
   };
   loadProducts(prodQuantity);
+  const loadModalData = function () {
+    let id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+    fetch(`../data/data.json`).then(response => {
+      return response.json();
+    }).then(data => {
+      //prodModal.innerHTML = '';
+      for (let dataItem of data) {
+        if (dataItem.id == id) {
+          console.log(dataItem);
+        }
+      }
+    });
+  };
   catalogMore.addEventListener('click', e => {
     prodQuantity = prodQuantity + 3;
     loadProducts(prodQuantity);

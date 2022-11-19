@@ -2,6 +2,7 @@ import GraphModal from "graph-modal";
 
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
+const prodModal = document.querySelector('[data-graph-target = "prod-modal"] .modal-content');
 let prodQuantity = 5;
 let dataLength = null;
 
@@ -64,12 +65,35 @@ if (catalogList) {
           $clamp(productTitle, {clamp: '22px'});
         });
 
-        const modal = new GraphModal();
+        const modal = new GraphModal({
+          isOpen: (modal) => {
+           const openBtnId = modal.previousActiveElement.dataset.id;
+            loadModalData(openBtnId);
+
+          },
+        });
 
       });
 
   };
   loadProducts(prodQuantity);
+
+  const loadModalData = (id = 1) => {
+    fetch(`../data/data.json`)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+
+      //prodModal.innerHTML = '';
+      for (let dataItem of data) {
+        if (dataItem.id == id) {
+          console.log(dataItem);
+        }
+      }
+
+    });
+  };
 
   catalogMore.addEventListener('click', (e) => {
     prodQuantity = prodQuantity + 3;

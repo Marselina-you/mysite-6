@@ -1183,6 +1183,10 @@ a {
   padding: var(--main-offset) var(--second-offset);
 }
 
+.prod-modal {
+  width: 1140px;
+}
+
 .footer {
   padding: 28px 0;
   background-color: var(--color-text);
