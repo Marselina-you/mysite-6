@@ -1,0 +1,36 @@
+// базовые подключения
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "settings";
+
+// подключения компонентов страницы
+//большие компоненты
+@import "./components/header";
+@import "./components/hero";
+@import "./components/catalog";
+@import "./components/product";
+@import "./components/sizes-table";
+@import "./components/about";
+@import "./components/quiz";
+@import "./components/team";
+@import "./components/faq";
+@import "./components/social";
+
+@import "./components/contacts";
+@import "./components/insta";
+@import "./components/footer";
+
+//малые компоненты
+@import "./components/logo";
+@import "./components/nav";
+@import "./components/cart";
+
+
+// тестовые стили, удалите их
+.page__body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--vh);
+}

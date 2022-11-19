@@ -1,0 +1,64 @@
+.about {
+  overflow: hidden;
+  background-color: var(--color-blue);
+
+
+  &__image {
+    position: relative;
+    overflow: hidden;
+    width: 1080px;
+
+    transform: skewX(-20deg);
+    background-color: var(--color-bg);
+
+
+    img {
+  margin-left: -130px;
+      max-width: 160%;
+      height: auto;
+      object-fit: cover;
+
+      transform: skewX(20deg);
+    }
+  }
+  //version MaxGraph
+  &__image {
+    position: absolute;
+    right: 0;
+    top: -150px;
+    flex-shrink: 0;
+    overflow: hidden;
+    width: 630px;
+    height: 950px;
+    transform: rotate(15deg);
+    background-color: var(--color-bg);
+
+    img {
+      position: relative;
+      max-width: none;
+      left: -10%;
+      top: 0;
+      width: 150%;
+      height: 100%;
+      object-fit: cover;
+      transform: rotate(-15deg);
+    }
+
+
+  }
+}
+
+/*{
+    "sizes":[
+      8,
+      8.5,
+      9,
+      9.5
+    ],
+    "descrition":"Кроссовки",
+    "chars":{
+      "Пол":"Мужской",
+      "Цвета":"Разноцветный"
+
+    }
+    },*/

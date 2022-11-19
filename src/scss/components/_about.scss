@@ -1,0 +1,87 @@
+.about {
+  position: relative;
+overflow: hidden;
+height: 580px;
+background-color: var(--color-blue);
+
+&__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+}
+&__figure {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+&__text {
+  width: 34%;
+  transform: translateY(80px);
+
+}
+&__title {
+  margin-bottom: var(--second-offset);
+  color: var(--color-white);
+
+}
+&__descr {
+
+  font: var(--middle-book);
+  color: var(--color-white);
+}
+&__quote {
+  display: inline-block;
+  margin-bottom: var(--second-offset);
+  font: inherit;
+
+  ::before, ::after {
+    display: none;
+  }
+
+}
+&__author {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font: var(--prehigh-regular);
+  font-style: normal;
+
+  transform: translateX(50px);
+
+  &::before {
+
+    content: "";
+    display: inline-block;
+    margin-right: var(--second-offset);
+    border-bottom: 3px solid var(--color-white);
+    width: 30px;
+
+    color: var(--color-white);
+
+ }
+}
+
+&__image {
+  position: relative;
+  margin-left: 17%;
+  overflow: hidden;
+  width: 465px;
+  transform: skewX(-20deg);
+  background-color: var(--color-bg);
+
+
+  img {
+margin-left: -110px;
+    max-width: 160%;
+    height: auto;
+    object-fit: cover;
+
+    transform: skewX(20deg);
+  }
+}
+
+
+}
