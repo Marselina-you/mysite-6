@@ -1,14 +1,28 @@
 import GraphModal from "graph-modal";
+import Swiper from "swiper";
 
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
-const prodModal = document.querySelector('[data-graph-target = "prod-modal"] .modal-content');
+const prodModal = document.querySelector('[data-graph-target = "prod-modal"] .prod-modal');
+const prodModalSlider = document.querySelector('.modal-slider .swiper-wrapper');
+const prodModalPreview = document.querySelector('.modal-slider .modal-preview');
+const prodModalInfo = document.querySelector('.modal-info__wrapper');
+const prodModalDescr = document.querySelector('.modal-prod-descr');
+const prodModalChars = document.querySelector('.prod-chars');
+const prodModalVideo = document.querySelector('.prod-modal__video');
+
+
 let prodQuantity = 5;
 let dataLength = null;
 
 const normalPrice = (str) => {
   return String(str).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-}
+};
+
+const prodSlider = new Swiper('.modal-slider__container', {
+  slidesPerView: 1,
+  spaceBetween: 20
+});
 
 if (catalogList) {
   const loadProducts = (quantity = 5 ) => {
@@ -68,7 +82,14 @@ if (catalogList) {
         const modal = new GraphModal({
           isOpen: (modal) => {
            const openBtnId = modal.previousActiveElement.dataset.id;
+
+
+
             loadModalData(openBtnId);
+
+
+
+            prodSlider.update();
 
           },
         });
@@ -79,20 +100,113 @@ if (catalogList) {
   loadProducts(prodQuantity);
 
   const loadModalData = (id = 1) => {
-    fetch(`../data/data.json`)
+    fetch(`../data/images/data.json`)
     .then((response) => {
       return response.json();
     })
     .then((data) => {
 
-      //prodModal.innerHTML = '';
+      prodModalSlider.innerHTML = '';
+      prodModalPreview.innerHTML = '';
+      prodModalInfo.innerHTML = '';
+      prodModalDescr.innerHTML = '';
+      prodModalChars.innerHTML = '';
+      prodModalVideo.innerHTML = '';
+
       for (let dataItem of data) {
         if (dataItem.id == id) {
           console.log(dataItem);
+
+          const slides = dataItem.gallery.map((image, idx) => {
+            return `
+            <div class="swiper-slide data-index="${idx}"">
+            <img src="${image}" alt=""></div>
+
+            `;
+          });
+          const preview = dataItem.gallery.map((image, idx) => {
+            return `
+            <div class="modal-preview__item" tabindex="0" data-index="${idx}">
+            <img src="${image}" alt=""></div>
+            `;
+          });
+          const sizes = dataItem.sizes.map((size, idx) => {
+            return `
+            <li class="modal-sizes__item">
+            <buttom class="modal-sizes__btn">${size}</buttom>
+          </li>
+            `;
+          });
+
+          prodModalSlider.innerHTML = slides.join('');
+          prodModalPreview.innerHTML = preview.join('');
+
+          prodModalInfo.innerHTML = `
+          <h3 class="modal-info__title">${dataItem.title}</h3>
+          <div class="modal-info__rate">
+            <img src="img/star.svg" alt="Рейтинг 5 из 5">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+            <img src="img/star.svg" alt="">
+          </div>
+          <div class="modal-info__sizes">
+            <span class="modal-info__subtitle">Выберите размер</span>
+            <ul class="list-reset modal-info__sizes-list modal-sizes">
+
+${sizes.join('')}
+            </ul>
+
+          </div>
+          <div class="modal-info__price">
+            <span class="modal-info__current-price">${dataItem.price + 'p'}</span>
+            <span class="modal-info__old-price">${dataItem.oldPrice ? dataItem.oldPrice + 'p' : '' }</span>
+          </div>
+
+          `;
+
+          prodModalDescr.textContent = dataItem.description;
+
+          let charsItems = ``;
+          Object.keys(dataItem.chars).forEach(function eachKey(key) {
+            charsItems +=  `<p class="prod-bottom__descr prod-chars__item">${key}: ${dataItem.chars[key]}</p>`;
+          });
+          prodModalChars.innerHTML = charsItems;
+
+          if (dataItem.video) {
+            prodModalVideo.style.display = 'block';
+            prodModalVideo.innerHTML = ` <iframe class="prod-modal__video" src="${dataItem.video}"  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+          }else {
+            prodModalVideo.style.display = 'none';
+          }
+
+
+
         }
       }
 
-    });
+    })
+    .then(() => {
+      prodSlider.update();
+
+      prodSlider.on('slideChangeTransitionEnd', function () {
+        let idx = document.querySelector('.swiper-slide-active').dataset.index;
+        document.querySelectorAll('.modal-preview__item').forEach(el => {el.classList.remove('modal-preview__item--active');});
+        document.querySelector(`.modal-preview__item[data-index="${idx}"]`).classList.add('modal-preview__item--active');
+      });
+
+
+      document.querySelectorAll('.modal-preview__item').forEach(el => {
+        el.addEventListener('click', (e) => {
+          const idx = parseInt(e.currentTarget.dataset.index);
+          document.querySelectorAll('.modal-preview__item').forEach(el => {el.classList.remove('modal-preview__item--active');});
+
+          e.currentTarget.classList.add('modal-preview__item--active');
+
+          prodSlider.slideTo(idx);
+        });
+      });
+    })
   };
 
   catalogMore.addEventListener('click', (e) => {

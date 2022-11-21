@@ -1,4 +1,4 @@
-const rangeSlider = document.getElementById('.range-slider');
+const rangeSlider = document.getElementById('#range-slider');
 
 if (rangeSlider) {
 	noUiSlider.create(rangeSlider, {
