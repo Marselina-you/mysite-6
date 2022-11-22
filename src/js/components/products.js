@@ -3,7 +3,7 @@ import Swiper from "swiper";
 
 const catalogList = document.querySelector('.catalog-list');
 const catalogMore = document.querySelector('.catalog__more');
-const prodModal = document.querySelector('[data-graph-target = "prod-modal"] .prod-modal');
+const prodModal = document.querySelector('[data-graph-target ="prod-modal"] .modal-content');
 const prodModalSlider = document.querySelector('.modal-slider .swiper-wrapper');
 const prodModalPreview = document.querySelector('.modal-slider .modal-preview');
 const prodModalInfo = document.querySelector('.modal-info__wrapper');
@@ -80,16 +80,16 @@ if (catalogList) {
         });
 
         const modal = new GraphModal({
+
+
           isOpen: (modal) => {
-           const openBtnId = modal.previousActiveElement.dataset.id;
 
+            if (modal.modalContainer.classList.contains('prod-modal')) {
+              const openBtnId = modal.previousActiveElement.dataset.id;
+              loadModalData(openBtnId);
+              prodSlider.update();
 
-
-            loadModalData(openBtnId);
-
-
-
-            prodSlider.update();
+            }
 
           },
         });

@@ -43,8 +43,71 @@
             <use xlink:href="img/sprite.svg#cart"></use>
           </svg>
           <div class="cart__count">1</div>
-
         </button>
+        <div class="mini-cart">
+          <div class="mini-cart__top" data-simplebar>
+            <ul class="mini-cart__list list-reset">
+              <li class="mini-cart__item">
+                <article class="mini-cart__product mini-product">
+                  <div class="mini-product__image">
+                    <img src="img/product-image.jpg" alt="">
+                  </div>
+                  <div class="mini-product__content">
+                    <div class="mini-product__text">
+                      <h3 class="mini-product__title">Женские кроссовки Puma Force 1 Shadow</h3>
+                      <span class="mini-product__price">190 789 ₽ </span>
+                    </div>
+                    <button class="btn-reset mini-product__delete" aria-label="Удалить товар">
+                      <svg>
+                        <use xlink:href="img/sprite.svg#trash" />
+                       </svg>
+                    </button>
+                  </div>
+
+                </article>
+              </li>
+              <li class="mini-cart__item">
+                <article class="mini-cart__product mini-product">
+                  <div class="mini-product__image">
+                    <img src="img/product-image.jpg" alt="">
+                  </div>
+                  <div class="mini-product__text">
+                    <h3 class="mini-product__title">Женские кроссовки Puma Force 1 Shadow</h3>
+                    <span class="mini-product__price">190 789 ₽ </span>
+                  </div>
+                  <button class="btn-reset mini-product__delete" aria-label="Удалить товар">
+                    <svg>
+                      <use xlink:href="img/sprite.svg#trash" />
+                     </svg>
+                  </button>
+                </article>
+              </li>
+              <li class="mini-cart__item">
+                <article class="mini-cart__product mini-product">
+                  <div class="mini-product__image">
+                    <img src="img/product-image.jpg" alt="">
+                  </div>
+                  <div class="mini-product__text">
+                    <h3 class="mini-product__title">Женские кроссовки Puma Force 1 Shadow</h3>
+                    <span class="mini-product__price">190 789 ₽ </span>
+                  </div>
+                  <button class="btn-reset mini-product__delete" aria-label="Удалить товар">
+                   <svg>
+                    <use xlink:href="img/sprite.svg#trash" />
+                   </svg>
+                  </button>
+                </article>
+              </li>
+            </ul>
+          </div>
+          <div class="mini-cart__bottom">
+            <div class="mini-cart__itog">
+              <span class="mini-cart__txt">Итого:</span>
+              <span class="mini-cart__summ">6 000 p</span>
+            </div>
+            <button class="btn-reset btn btn--primary mini-cart__btn" data-graph-path="cart-modal">Перейти в корзину</button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -68,6 +131,7 @@
       <section class="catalog">
   <div class="container catalog__container">
     <h2 class="title catalog__title">Каталог</h2>
+
     <div class="catalog__content grid">
       <div class="catalog__left">
         <div class="catalog-filters">
@@ -410,6 +474,62 @@
 
             <!-- контент модального окна -->
         </div>
+    <div class="graph-modal__container cart-modal" role="dialog" aria-modal="true" data-graph-target="cart-modal">
+      <button class="btn-reset graph-modal__close js-modal-close" aria-label="Закрыть модальное окно"></button>
+      <div class="graph-modal-content modal-content">
+        <div class="cart-modal__top">
+          <h2 class="cart-modal__title">Оформление заказа</h2>
+          <span class="cart-modal__order-number">заказ 345884</span>
+
+        </div>
+        <div class="cart-modal__order">
+          <div class="cart-modal-order__top">
+            <div class="span cart-modal-order__quantity">Товаров в заказе<span>3 шт</span></div>
+            <div class="span cart-modal-order__summ">Общая сумма заказа<span>3 000 p</span></div>
+          </div>
+          <div class="cart-modal-order__content">
+            <button class="btn-reset cart-modal-order__show">
+              Состав заказа
+             <svg>
+              <use xlink:href="img/sprite.svg#angle" />
+             </svg>
+
+              </a>
+            </button>
+            <ul class="cart-modal-order__list list-reset">
+              <li class="cart-modal-order__item">
+                <article class="cart-modal-order__product cart-modal-product">
+                  <div class="cart-modal-product__image">
+                    <img src="img/product-image.jpg" alt="">
+                  </div>
+                  <div class="cart-modal-product__content">
+                    <div class="cart-modal-product__text">
+                      <h3 class="cart-modal-product__title">Женские кроссовки Puma Force 1 Shadow</h3>
+                      <span class="cart-modal-product__price">8 678 р</span>
+                    </div>
+                    <button class="btn-reset cart-modal-product__delete" aria-label="Удалить товар">
+
+                        <svg>
+                          <use xlink:href="img/sprite.svg#trash" />
+                         </svg>
+
+                    </button>
+                  </div>
+                </article>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+          <form class="cart-modal__form">
+            <input type="text" class="input cart-modal__input" name="name" placeholder="Ваше имя" data-validate-field="name">
+            <input type="tel" class="input cart-modal__input" name="tel" placeholder="Номер телефона" data-validate-field="phone">
+            <input type="email" class="input cart-modal__input" name="email" placeholder="E-mail" data-validate-field="email">
+            <button class="btn-reset btn btn--primary cart-modal__btn">Оформить заказ</button>
+          </form>
+
+        <!-- контент модального окна -->
+      </div>
     </div>
 </div>
 
