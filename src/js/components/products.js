@@ -119,21 +119,23 @@ if (catalogList) {
 
           const slides = dataItem.gallery.map((image, idx) => {
             return `
-            <div class="swiper-slide data-index="${idx}"">
+            <div class="swiper-slide" data-index="${idx}">
             <img src="${image}" alt=""></div>
 
             `;
           });
           const preview = dataItem.gallery.map((image, idx) => {
             return `
-            <div class="modal-preview__item" tabindex="0" data-index="${idx}">
-            <img src="${image}" alt=""></div>
+            <div class="modal-preview__item ${idx === 0 ? 'modal-preview__item--active' : ''}" tabindex="0" data-index="${idx}">
+            <img src="${image}" alt="">
+          </div>
+
             `;
           });
           const sizes = dataItem.sizes.map((size, idx) => {
             return `
             <li class="modal-sizes__item">
-            <buttom class="modal-sizes__btn">${size}</buttom>
+            <button class="modal-sizes__btn">${size}</button>
           </li>
             `;
           });
@@ -191,6 +193,7 @@ ${sizes.join('')}
 
       prodSlider.on('slideChangeTransitionEnd', function () {
         let idx = document.querySelector('.swiper-slide-active').dataset.index;
+        console.log(idx);
         document.querySelectorAll('.modal-preview__item').forEach(el => {el.classList.remove('modal-preview__item--active');});
         document.querySelector(`.modal-preview__item[data-index="${idx}"]`).classList.add('modal-preview__item--active');
       });
