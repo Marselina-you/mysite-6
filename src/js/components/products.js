@@ -78,8 +78,10 @@ if (catalogList) {
       })
       .then(() => {
         const productTitle = document.querySelectorAll('div.product__title');
+
         productTitle.forEach(el => {
           $clamp(productTitle, {clamp: '22px'});
+
         });
 cartLogic();//вызываем корзину
 
@@ -104,7 +106,7 @@ cartLogic();//вызываем корзину
   loadProducts(prodQuantity);
 
   const loadModalData = (id = 1) => {
-    fetch(`../data/images/data.json`)
+    fetch(`../data/data.json`)
     .then((response) => {
       return response.json();
     })
@@ -120,6 +122,7 @@ cartLogic();//вызываем корзину
       for (let dataItem of data) {
         if (dataItem.id == id) {
           console.log(dataItem);
+          
 
           const slides = dataItem.gallery.map((image, idx) => {
             return `

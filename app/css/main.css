@@ -788,6 +788,10 @@ a {
   object-fit: cover;
 }
 .product__title {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 30px;
   margin: 0;
   margin-bottom: var(--small-offset);
   font: var(--middle-book);

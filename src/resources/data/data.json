@@ -1,7 +1,7 @@
 [
   {
     "id":1,
-    "title":"Кроссовки Reebok Club C 85",
+    "title":"башмакиллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллллл Reebok Club C 85",
     "price":7490,
     "mainImage":"./data/images/1/1.webp",
     "gallery":[
@@ -26,7 +26,7 @@
   },
   {
     "id":2,
-    "title":"Кроссовки Nike Waffle Trainer 2 SP",
+    "title":"Валенки Nike Waffle Trainer 2 SP",
     "oldPrice":10000,
     "price":8500,
     "mainImage":"./data/images/2/1.webp",
