@@ -1,9 +1,27 @@
+@import "../mixins";
 .catalog {
   padding: var(--big-offset) 0;
 
    &__left {
     grid-column: 3 span;
 
+   }
+
+   &__reset {
+    transition: color 0.3s ease-in-out;
+
+    &:focus {
+      color: var(--color-accent-hover);
+    }
+    &:active {
+      color: var(--color-accent-hover);
+    }
+
+    @include desktop {
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
    }
 
    &__grid {
@@ -83,6 +101,7 @@
       }
     }
     &__input {
+      outline: none;
       border: 1px solid var(--color-grey);
       width: 50%;
       height: 50px;
@@ -140,6 +159,9 @@
      }
 
 
+  }
+  .catalog-price__input.focus-visible {
+    background-color: var(--color-cameo);
   }
 
 

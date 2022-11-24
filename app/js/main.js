@@ -188,7 +188,7 @@ cartBtn.addEventListener('click', () => {
   miniCart.classList.toggle('mini-cart--visible');
 });
 document.addEventListener('click', e => {
-  console.log(e.target);
+  //console.log(e.target)
   if (!e.target.classList.contains('mini-cart') && e.target.closest('.mini-cart') && !e.target.closest('.mini-cart') && !e.target.classList.contains('cart__btn')) {
     miniCart.classList.remove('mini-cart--visible');
   }
@@ -276,6 +276,7 @@ const prodModalVideo = document.querySelector('.prod-modal__video');
 const miniCart = document.querySelector('.mini-cart');
 let prodQuantity = 5;
 let dataLength = null;
+let modal = null;
 const normalPrice = str => {
   return String(str).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
 };
@@ -335,7 +336,8 @@ if (catalogList) {
         });
       });
       cartLogic(); //вызываем корзину
-      const modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]({
+
+      modal = new graph_modal__WEBPACK_IMPORTED_MODULE_0__["default"]({
         isOpen: modal => {
           if (modal.modalContainer.classList.contains('prod-modal')) {
             const openBtnId = modal.previousActiveElement.dataset.id;
@@ -551,6 +553,60 @@ const cartLogic = () => {
     }
   });
 };
+const openOrderModal = document.querySelector('.mini-cart__btn');
+const orderModalList = document.querySelector('.cart-modal-order__list');
+const orderModalQuantity = document.querySelector('.cart-modal-order__quantity span');
+const orderModalSumm = document.querySelector('.cart-modal-order__summ span');
+const orderModalShow = document.querySelector('.cart-modal-order__show');
+openOrderModal.addEventListener('click', () => {
+  const productsHtml = document.querySelector('.mini-cart__list').innerHTML;
+  orderModalList.innerHTML = productsHtml;
+  orderModalQuantity.textContent = `${document.querySelectorAll('.mini-cart__list .mini-cart__item').length} шт`;
+  orderModalSumm.textContent = fullPrice.textContent;
+});
+orderModalShow.addEventListener('click', () => {
+  if (orderModalList.classList.contains('cart-modal-order__list--visible')) {
+    orderModalList.classList.remove('cart-modal-order__list--visible');
+    orderModalShow.classList.remove('cart-modal-order__show--active');
+  } else {
+    orderModalList.classList.add('cart-modal-order__list--visible');
+    orderModalShow.classList.add('cart-modal-order__show--active');
+  }
+});
+//remove from modal order
+
+orderModalList.addEventListener('click', e => {
+  if (e.target.classList.contains('mini-product__delete')) {
+    console.log('asd');
+    const self = e.target;
+    const parent = self.closest('.mini-cart__item');
+    const price = parseInt(priceWithoutSpaces(parent.querySelector('.mini-product__price').textContent));
+    const id = parent.dataset.id;
+    console.log(document.querySelector(`.product__btn[data-id="${id}"]`));
+    document.querySelector(`.add-to-cart-btn[data-id="${id}"]`).classList.remove('product__btn--disabled');
+    parent.style.display = 'none';
+
+    //setTimeout(() => {
+    parent.remove();
+
+    //}, 100);
+
+    document.querySelector(`.mini-cart__item[data-id="${id}"]`).remove();
+    minusFullPrice(price);
+    printFullPrice();
+    setTimeout(() => {
+      let num = document.querySelectorAll('.cart-modal-order__list .mini-cart__item').length;
+      console.log(num);
+      if (num == 0) {
+        cartCount.classList.remove('cart__count--visible');
+        miniCart.classList.remove('mini-cart--visible');
+        document.querySelector('.cart__btn').classList.add('cart__btn--inactive');
+        modal.close();
+      }
+      printQuantity(num);
+    }, 100);
+  }
+});
 
 /***/ }),
 
@@ -691,13 +747,16 @@ class Quiz {
         this.counter++;
         this.$el.innerHTML = quizTemplate(this.data[this.counter], this.dataLength, this.options);
         if (this.counter + 1 == this.dataLength) {
+          document.querySelector('.quiz-question__answers').style.display = 'block';
           //this.$el.querySelector('.quiz-bottom').insertAdjacentHTML('beforeend', `<button type="button" data-send>${this.options.sendBtnText}</button>`)
           //this.$el.querySelector('[data-next-btn]').remove();
         }
       } else {
         console.log('А все! конец!');
         document.querySelector('.quiz-questions').style.display = 'none';
-        document.querySelector('.asd').style.display = 'block';
+        document.querySelector('.last-question').style.display = 'block';
+        document.querySelector('.quiz__title').textContent = 'Ваша подборка готова!';
+        document.querySelector('.quiz__descr').textContent = 'Оставьте свои контактные данные, чтобы бы мы могли отправить  подготовленный для вас каталог';
       }
     } else {
       console.log('Не валидно!');

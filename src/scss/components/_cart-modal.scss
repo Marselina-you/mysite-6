@@ -62,6 +62,14 @@
       display: block;
     }
   }
+  &__list {
+    display: none;
+
+    &--visible {
+      display: block;
+
+    }
+  }
 
   &__quantity {
     margin-bottom: var(--second-offset);
@@ -90,6 +98,7 @@
       fill: currentColor;
       object-fit: cover;
       transition: transform 0.3s ease-in-out;
+      
     }
 
     &--active {

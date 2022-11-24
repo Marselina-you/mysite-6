@@ -1,6 +1,6 @@
 /* stylelint-disable */
 
-@mixin for-desktop {
+@mixin desktop {
   @media (min-width: (1025px)) {
     @content;
   }

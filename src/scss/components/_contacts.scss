@@ -1,3 +1,4 @@
+@import "../mixins";
 .contacts {
   padding: var(--big-offset) 0;
   background-color: rgba(243, 246, 246, 1);
@@ -29,10 +30,25 @@
   }
 
   &__phone {
-   display: inline-block;
+
+    display: inline-block;
+    outline: none;
     margin-bottom: var(--small-offset);
     font: var(--middle-high-bold);
     color: var(--color-text);
+    transition: color 0.3s ease-in-out;
+    &:active {
+      color: var(--color-accent);
+    }
+    &:focus {
+      color: var(--color-accent-hover);
+    }
+
+    @include desktop {
+      &:hover {
+        color: var(--color-accent);
+      }
+    }
 
   }
   &__text {

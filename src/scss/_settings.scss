@@ -1,3 +1,4 @@
+
 html {
   box-sizing: border-box;
 }
@@ -44,10 +45,12 @@ a {
 }
 
 .btn-reset {
+  outline: none;
   border: none;
   padding: 0;
   background-color: transparent;
   cursor: pointer;
+
 }
 
 .list-reset {
@@ -117,6 +120,7 @@ a {
 
 }
 .btn {
+  outline: none;
   border-radius: 4px;
   padding: 22px 47px;
   font: var(--middle-regular);
@@ -128,20 +132,35 @@ a {
     color: var(--color-white);
     background-color: var(--color-accent);
 
-    &:hover {
-      background-color: var(--color-accent-hover);
+    @include desktop {
+      &:hover {
+        background-color: var(--color-accent-hover);
+      }
     }
 
-  }
+    &:active {
+      background-color: var(--color-btn-active);
+    }
+}
   &--secondary {
     color: var(--color-white);
     background-color: var(--color-text);
 
-    &:hover {
-      background-color: var(--color-text-hover);
-    }
-
+@include desktop {
+  &:hover {
+    background-color: var(--color-text-hover);
   }
+}
+&:active {
+  background-color: var(--color-btn-active);
+}
+  }
+
+
+  &--secondary.focus-visible:focus-visible {
+    background-color: var(--color-accent-hover);
+  }
+
   &--thirdly {
     color: var(--color-text);
     padding: 13px;
@@ -149,15 +168,32 @@ a {
     color: var(--color-text);
     background-color: transparent;
 
-    &:hover {
-      color: var(--color-white);
-      background-color: var(--color-text);
-    }
 
+    @include desktop {
+      &:hover {
+        color: var(--color-white);
+        background-color: var(--color-text);
+      }
+    }
+    &:active {
+      background-color: var(--color-btn-active);
+    }
   }
 
 
+  }
+
+.btn--primary.focus-visible {
+  background-color: var(--color-accent-hover);
 }
+.btn--secondary.focus-visible {
+  background-color: var(--color-accent-hover);
+}
+.btn--thirdly.focus-visible {
+  background-color: var(--color-accent-hover);
+}
+
+
 .title {
   margin: 0;
   margin-bottom: var(--main-offset);
@@ -193,14 +229,20 @@ a {
   }
 }
 .custom-checkbox__field:focus + .custom-checkbox__content::before {
-  outline: none;
+  outline: 2px solid var(--color-blue);
   outline-offset: 2px;
+}
+
+
+.tooltip {
+  position: relative;
+  margin-left: var(--small-offset);
 }
 .tooltip {
   position: relative;
-margin-left: var(--small-offset);
-}
+  margin-left: var(--small-offset);
 
+}
 .tooltip__btn {
   display: flex;
   align-items: center;
