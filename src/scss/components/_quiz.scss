@@ -32,6 +32,10 @@
 .quiz-question {
   &__label {
     display: inline-block;
+
+    @include mobile {
+      width: 100%;
+    }
   }
 
   &__message {
@@ -43,6 +47,10 @@
     color: var(--color-cameo);
     background: var(--color-white);
     resize: none;
+
+    @include mobile {
+      width: 100%;
+    }
 
   }
   &__title {
@@ -62,12 +70,20 @@
     @include tablet {
       gap: var(--second-offset);
     }
+    @include mobile {
+      display: block;
+    }
 
 
   }
   &__item {
     img {
       margin-bottom: var(--small-offset);
+    }
+    @include mobile {
+      &:not(:last-child) {
+        margin-bottom: 30px;
+      }
     }
   }
   &__count {

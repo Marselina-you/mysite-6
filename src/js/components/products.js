@@ -332,7 +332,7 @@ const cartLogic = () => {
       const id = e.currentTarget.dataset.id;
       loadCartData(id);
 
-      //document.querySelector('.cart__btn').classList.remove('cart__btn--inactive');
+      document.querySelector('.cart__btn').classList.remove('cart__btn--inactive');
 
       e.currentTarget.classList.add('product__btn--disabled');
     });
@@ -359,7 +359,7 @@ const cartLogic = () => {
       if (num == 0) {
         cartCount.classList.remove('cart__count--visible');
         miniCart.classList.remove('mini-cart--visible');
-        //document.querySelector('.cart__btn').classList.add('cart__btn--inactive');
+        document.querySelector('.cart__btn').classList.add('cart__btn--inactive');
       }
 
       printQuantity(num);
@@ -421,6 +421,7 @@ orderModalList.addEventListener('click', (e) => {
     setTimeout(() => {
       let num = document.querySelectorAll('.cart-modal-order__list .mini-cart__item').length;
       console.log(num);
+
       orderModalQuantity.textContent ='';
       orderModalSumm.textContent = '';
       orderModalQuantity.textContent = `${num} шт`;
@@ -435,7 +436,7 @@ orderModalList.addEventListener('click', (e) => {
       }
 
       printQuantity(num);
-    }, 100);
+    }, 300);
 
 
   }

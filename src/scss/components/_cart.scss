@@ -8,6 +8,10 @@
     width: 20px;
     height: 20px;
 
+    &--inactive {
+      pointer-events: none;
+    }
+
     svg {
       display: block;
       width: 100%;
@@ -128,6 +132,8 @@
   &__btn {
     padding-top: 14px;
     padding-bottom: 14px;
+
+
 
     @include mobile {
       width: 100%;
