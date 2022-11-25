@@ -5,6 +5,9 @@
   margin: 0 auto;
   max-width: 800px;
 }
+@include mobile {
+  padding: var(--main-offset) 0;
+}
 }
 .faq-accordion {
   border-top: 1px solid var(--color-text);

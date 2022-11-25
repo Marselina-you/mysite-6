@@ -115,6 +115,11 @@
     display: block;
     margin-bottom: var(--small-offset);
   }
+  &__itog {
+    @include mobile {
+      margin-bottom: 20px;
+    }
+  }
   &__summ {
     font: var(--prehigh-regular);
     font-weight: 700;
@@ -124,6 +129,19 @@
     padding-top: 14px;
     padding-bottom: 14px;
 
+    @include mobile {
+      width: 100%;
+    }
+
+  }
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  }
+
+  @include mobile {
+    width: calc(100vw - 30px);
   }
 
 

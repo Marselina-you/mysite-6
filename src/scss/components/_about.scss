@@ -20,6 +20,11 @@ background-color: var(--color-blue);
   width: 34%;
   transform: translateY(80px);
 
+  @include small-tablet {
+    width: 100%;
+    transform: none;
+  }
+
 }
 &__title {
   margin-bottom: var(--second-offset);
@@ -48,8 +53,11 @@ background-color: var(--color-blue);
   justify-content: flex-end;
   font: var(--prehigh-regular);
   font-style: normal;
-
   transform: translateX(50px);
+
+  @include small-tablet {
+    transform: none;
+  }
 
   &::before {
 
@@ -67,6 +75,7 @@ background-color: var(--color-blue);
 &__image {
   position: relative;
   margin-left: 17%;
+  height: auto;
   overflow: hidden;
   width: 465px;
   transform: skewX(-20deg);
@@ -74,13 +83,26 @@ background-color: var(--color-blue);
 
 
   img {
-margin-left: -110px;
-    max-width: 160%;
-    height: auto;
-    object-fit: cover;
+    margin-left: -110px;
 
+    max-width: 160%;
+    height: 580px;
+    object-fit: cover;
     transform: skewX(20deg);
+
+
   }
+
+  @include tablet {
+    right: -50px;
+  }
+  @include small-tablet {
+    display: none;
+  }
+}
+@include small-tablet {
+  padding: 50px 0;
+  height: auto;
 }
 
 

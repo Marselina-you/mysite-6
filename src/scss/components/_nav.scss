@@ -2,21 +2,30 @@
   &__list {
     display: flex;
     align-self: center;
-
+    right: 0;
+    justify-content: flex-end;
+    flex-wrap: wrap;
     @include tablet {
-      flex-direction: column;
+      justify-content: center;
     }
+
   }
 
   &__item {
+
+
     &:not(:last-child) {
       margin-right: var(--main-offset);
 
       @include tablet {
-        margin-right: 0;
-        margin-bottom: var(--main-offset);
+        margin-right: var(--second-offset);
+        margin-bottom: var(--second-offset);
+      }
+      @include small-tablet {
+        margin-bottom: var(--small-offset);
       }
     }
+
   }
 
   &__link {

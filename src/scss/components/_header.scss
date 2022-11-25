@@ -35,5 +35,16 @@
     grid-column: 10 span;
     display: flex;
     justify-content: flex-end;
+
+    @include mobile {
+      grid-column: 2 span;
+    }
+  }
+
+  &__nav {
+
+    @include tablet {
+      display: none;
+    }
   }
 }

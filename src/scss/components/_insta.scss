@@ -13,6 +13,10 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
+
+    @include small-tablet {
+      justify-content: center;
+    }
   }
   &__left {
     flex-shrink: 0;
@@ -20,6 +24,7 @@
     border-radius: 4px;
     width: 380px;
     background-color: var(--color-blue);
+
   }
 
   &__right {
@@ -29,6 +34,10 @@
     align-items: center;
     height: 100%;
     width: calc(100% - (380px + var(--small-offset)));
+
+    @include small-tablet {
+      display: none;
+    }
   }
 
   &__title {
@@ -44,7 +53,11 @@
     color: var(--color-white);
 }
 
+@include mobile {
+  padding: 40px 0;
 }
+}
+
 .callback-form {
   display: flex;
   flex-direction: column;

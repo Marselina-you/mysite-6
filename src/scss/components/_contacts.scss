@@ -8,6 +8,10 @@
     align-items: flex-start;
     justify-content: space-between;
 
+    @include tablet {
+      flex-wrap: wrap;
+    }
+
   }
 
   &__title {
@@ -54,14 +58,31 @@
   &__text {
     margin-right: var(--second-offset);
     width: calc(100% - (680px + var(--second-offset)));
+
+    @include tablet {
+      margin-right: 0;
+      margin-bottom: var(--second-offset);
+      width: 100%;
+
+    }
   }
 
   &__address {
     display: block;
+
+    @include mobile {
+      font-size: 14px;
+    }
+
+
   }
   &__map {
     width: 680px;
     height: 500px;
+
+    @include tablet {
+      width: 100%;
+    }
   }
 
 }
