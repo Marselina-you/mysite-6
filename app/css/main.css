@@ -907,6 +907,7 @@ a {
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  outline: none;
   border-radius: 100%;
   width: 80px;
   height: 80px;
@@ -922,13 +923,19 @@ a {
   -o-object-fit: cover;
   object-fit: cover;
 }
-.product__btn:first-child {
-  margin-right: var(--main-offset);
+.product__btn:focus {
+  background-color: var(--color-text-hover);
+}
+.product__btn:active {
+  background-color: var(--color-accent-hover);
 }
 @media (min-width: 1025px) {
   .product__btn:hover {
     background-color: var(--color-text-hover);
   }
+}
+.product__btn:first-child {
+  margin-right: var(--main-offset);
 }
 .product__btn--disabled {
   opacity: 0.4;

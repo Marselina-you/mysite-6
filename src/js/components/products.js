@@ -81,8 +81,25 @@ if (catalogList) {
 
         productTitle.forEach(el => {
           $clamp(productTitle, {clamp: '22px'});
+});
 
+const productsBtns = document.querySelectorAll('.product__btn');
+
+        productsBtns.forEach(el => {
+          console.log(el)
+          el.addEventListener('focus', (e) => {
+            let parent = e.currentTarget.closest('.product__btns');
+            console.log(parent)
+            parent.classList.add('product__btns--active');
+          }, true);
+
+          el.addEventListener('blur', (e) => {
+            let parent = e.currentTarget.closest('.product__btns');
+            console.log(parent)
+            parent.classList.remove('product__btns--active');
+          }, true);
         });
+
 cartLogic();//вызываем корзину
 
         modal = new GraphModal({
@@ -122,7 +139,7 @@ cartLogic();//вызываем корзину
       for (let dataItem of data) {
         if (dataItem.id == id) {
           console.log(dataItem);
-          
+
 
           const slides = dataItem.gallery.map((image, idx) => {
             return `
@@ -378,7 +395,7 @@ orderModalShow.addEventListener('click', () => {
 
 orderModalList.addEventListener('click', (e) => {
   if (e.target.classList.contains('mini-product__delete')) {
-    console.log('asd')
+    //console.log('asd')
     const self = e.target;
     const parent = self.closest('.mini-cart__item');
     const price = parseInt(priceWithoutSpaces(parent.querySelector('.mini-product__price').textContent));
@@ -403,7 +420,11 @@ orderModalList.addEventListener('click', (e) => {
 
     setTimeout(() => {
       let num = document.querySelectorAll('.cart-modal-order__list .mini-cart__item').length;
-      console.log(num)
+      console.log(num);
+      orderModalQuantity.textContent ='';
+      orderModalSumm.textContent = '';
+      orderModalQuantity.textContent = `${num} шт`;
+      orderModalSumm.textContent = fullPrice.textContent;
 
       if (num == 0) {
         cartCount.classList.remove('cart__count--visible');

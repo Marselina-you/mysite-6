@@ -55,9 +55,11 @@
     }
   }
   &__btn {
+
     display: flex;
     align-items: center;
     justify-content: center;
+    outline: none;
     border-radius: 100%;
     width: 80px;
     height: 80px;
@@ -71,15 +73,21 @@
       object-fit: cover;
 
     }
-    &:first-child {
-      margin-right: var(--main-offset);
+    &:focus {
+      background-color: var(--color-text-hover);
     }
-
+    &:active {
+      background-color: var(--color-accent-hover);
+    }
     @include desktop {
       &:hover {
         background-color: var(--color-text-hover);
       }
     }
+    &:first-child {
+      margin-right: var(--main-offset);
+    }
+
 
 
 
