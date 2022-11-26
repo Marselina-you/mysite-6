@@ -4,6 +4,8 @@ import './components/faq.js';
 import './components/map.js';
 import './components/cart.js';
 import './components/products.js';
+import './components/burger.js';
+import './components/validate.js';
 
 
 
