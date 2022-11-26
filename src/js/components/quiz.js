@@ -1,72 +1,70 @@
+let quizFormData = null;
+let textareaText = null;
+
 const quizData = [{
-  number: 1,
-  title: "Какой тип кроссовок рассматриваете?",
-  answer_alias: "type",
-  answers: [{
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-    {
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-    {
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-    {
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-    {
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-    {
-      answer_title: "кеды",
-      type: "checkbox"
-    },
-  ]
-},
-{
-  number: 2,
-  title: "Какой размер вам подойдет?",
-  answer_alias: "great",
-  answers: [{
-      answer_title: "Менее 36",
-      type: "checkbox"
-    },
-    {
-      answer_title: "36-38",
-      type: "checkbox"
-    },
-    {
-      answer_title: "38-40",
-      type: "checkbox"
-    },
-    {
-      answer_title: "42-44",
-      type: "checkbox"
-    },
-    {
-      answer_title: "45 и больше",
-      type: "checkbox"
-    },
-
-  ]
-},
-{
-  number: 3,
-  title: "Уточните какие-либо моменты",
-  answer_alias: "message",
-  answers: [{
-    answer_title: "Введите сообщение",
-    type: "textarea"
-  },
-  ]
-}
-
+		number: 1,
+		title: "Какой тип кроссовок рассматриваете?",
+		answer_alias: "type",
+		answers: [{
+				answer_title: "кеды",
+				type: "checkbox"
+			},
+			{
+				answer_title: "кеды",
+				type: "checkbox"
+			},
+			{
+				answer_title: "кеды",
+				type: "checkbox"
+			},
+      {
+				answer_title: "кеды",
+				type: "checkbox"
+			},
+      {
+				answer_title: "кеды",
+				type: "checkbox"
+			}
+		]
+	},
+	{
+		number: 2,
+		title: "Какой размер вам подойдет?",
+		answer_alias: "size",
+		answers: [{
+				answer_title: "Менее 36",
+				type: "checkbox"
+			},
+			{
+				answer_title: "36-38",
+				type: "checkbox"
+			},
+      {
+				answer_title: "39-41",
+				type: "checkbox"
+			},
+      {
+				answer_title: "42-44",
+				type: "checkbox"
+			},
+      {
+				answer_title: "45 и больше",
+				type: "checkbox"
+			}
+		]
+	},
+  {
+		number: 3,
+		title: "Уточните какие-либо моменты",
+		answer_alias: "message",
+		answers: [{
+			answer_title: "Введите сообщение",
+			type: "textarea"
+		},
+		]
+	}
 ];
+
 const quizTemplate = (data = [], dataLength = 0, options) => {
 	const {number, title} = data;
 	const {nextBtnText} = options;
@@ -74,50 +72,42 @@ const quizTemplate = (data = [], dataLength = 0, options) => {
 
     if (item.type === 'checkbox') {
       return `
-      <li class="quiz-question__item">
-      <img src="img/sneaker.jpg" alt="">
-      <label class="custom-checkbox quiz-question__label">
-      <input type="${item.type}" class="custom-checkbox__field quiz-question__answer" data-valid="false"  name="${data.answer_alias}" ${item.type == 'text' ? 'placeholder="Введите ваш вариант"' : ''} value="${item.type !== 'text' ? item.answer_title : ''}">
-      <span class="custom-checkbox__content">${item.answer_title}</span>
-    </label>
-
+        <li class="quiz-question__item">
+          <img src="img/sneaker.jpg" alt="">
+          <label class="custom-checkbox quiz-question__label">
+            <input type="${item.type}" class="custom-checkbox__field quiz-question__answer" data-valid="false" name="${data.answer_alias}" ${item.type == 'text' ? 'placeholder="Введите ваш вариант"' : ''} value="${item.type !== 'text' ? item.answer_title : ''}">
+            <span class="custom-checkbox__content">${item.answer_title}</span>
+          </label>
         </li>
       `;
     } else if (item.type === 'textarea') {
-return `
-<label class="quiz-question__label">
-<textarea placeholder="${item.answer_title}" class="quiz-question__message"></textarea>
-
-</label>
-`;
-
-    }
-    else {
       return `
-			<label class="quiz-question__label">
-				<input type="${item.type}" data-valid="false" class="quiz-question__answer" name="${data.answer_alias}" ${item.type == 'text' ? 'placeholder="Введите ваш вариант"' : ''} value="${item.type !== 'text' ? item.answer_title : ''}">
-				<span>${item.answer_title}</span>
-			</label>
-		`;
+        <label class="quiz-question__label">
+          <textarea placeholder="${item.answer_title}" class="quiz-question__message"></textarea>
+        </label>
+      `;
+    } else {
+      return `
+        <label class="quiz-question__label">
+          <input type="${item.type}" data-valid="false" class="quiz-question__answer" name="${data.answer_alias}" ${item.type == 'text' ? 'placeholder="Введите ваш вариант"' : ''} value="${item.type !== 'text' ? item.answer_title : ''}">
+          <span>${item.answer_title}</span>
+        </label>
+      `;
     }
 
 	});
 
 	return `
-
-
-			<div class="quiz-question">
-				<h3 class="quiz-question__title">${title}</h3>
-				<ul class="quiz-question__answers list-reset">
-					${answers.join('')}
-				</ul>
-        <div class="quiz-bottom">
+    <div class="quiz-question">
+      <h3 class="quiz-question__title">${title}</h3>
+      <ul class="quiz-question__answers list-reset">
+        ${answers.join('')}
+      </ul>
+      <div class="quiz-bottom">
         <div class="quiz-question__count">${number} из ${dataLength}</div>
         <button type="button" class="btn btn-reset btn--thirdly quiz-question__btn" data-next-btn>${nextBtnText}</button>
-        </div>
-
-			</div>
-
+      </div>
+    </div>
 	`
 };
 
@@ -149,18 +139,51 @@ class Quiz {
 
 				if ((this.counter + 1 == this.dataLength)) {
           document.querySelector('.quiz-question__answers').style.display = 'block';
-					//this.$el.querySelector('.quiz-bottom').insertAdjacentHTML('beforeend', `<button type="button" data-send>${this.options.sendBtnText}</button>`)
-					//this.$el.querySelector('[data-next-btn]').remove();
-
 				}
 			} else {
 				console.log('А все! конец!');
         document.querySelector('.quiz-questions').style.display = 'none';
-          document.querySelector('.last-question').style.display = 'block';
-          document.querySelector('.quiz__title').textContent = 'Ваша подборка готова!';
-          document.querySelector('.quiz__descr').textContent = 'Оставьте свои контактные данные, чтобы бы мы могли отправить  подготовленный для вас каталог';
+        document.querySelector('.last-question').style.display = 'block';
+        document.querySelector('.quiz__title').textContent = 'Ваша подборка готова!';
+        document.querySelector('.quiz__descr').textContent = 'Оставьте свои контактные данные, чтобы бы мы могли отправить  подготовленный для вас каталог';
 
-			}
+        document.querySelector('.quiz-form').addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          quizFormData = new FormData();
+
+
+          for (let item of this.resultArray) {
+            for (let obj in item) {
+              quizFormData.append(obj, item[obj].substring(0, item[obj].length - 1));
+            }
+          }
+
+          quizFormData.append('textarea', textareaText);
+
+          let xhr = new XMLHttpRequest();
+
+          xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+                console.log('Отправлено');
+              }
+            }
+          }
+
+          document.querySelector('.quiz-form').querySelectorAll('input').forEach(el => {
+            if (el.value) {
+              xhr.open('POST', 'mail.php', true);
+              xhr.send(quizFormData);
+
+              document.querySelector('.quiz-form').reset();
+            }
+          });
+
+
+        });
+
+      }
 		} else {
 			console.log('Не валидно!')
 		}
@@ -173,10 +196,6 @@ class Quiz {
 				this.addToSend();
 				this.nextQuestion();
 			}
-
-			if (e.target == document.querySelector('[data-send]')) {
-				this.send();
-			}
 		});
 
 		this.$el.addEventListener('change', (e) => {
@@ -188,8 +207,12 @@ class Quiz {
 						el.checked = false;
 					});
 				}
-				this.tmp = this.serialize(this.$el);
-			}
+				this.tmp = this.serialize(document.querySelector('.quiz-form'));
+			} else {
+        let textarea = this.$el.querySelector('textarea');
+		//console.log(textarea)
+        textareaText = textarea.value;
+      }
 		});
 	}
 
@@ -198,16 +221,15 @@ class Quiz {
 
     let textarea = this.$el.querySelector('textarea');
 
-if (textarea) {
-  if (textarea.value.length > 0) {
-    isValid = true;
-    return isValid;
-  }
-}
+    if (textarea) {
+      if (textarea.value.length > 0) {
+        isValid = true;
+        return isValid;
+      }
+    }
 
 
-
-		let elements = this.$el.querySelectorAll('input')
+		let elements = this.$el.querySelectorAll('input');
 		elements.forEach(el => {
 			switch(el.nodeName) {
 				case 'INPUT':
@@ -241,23 +263,6 @@ if (textarea) {
 		this.resultArray.push(this.tmp)
 	}
 
-	send() {
-		if (this.valid()) {
-			const formData = new FormData();
-
-			for (let item of this.resultArray) {
-				for (let obj in item) {
-					formData.append(obj, item[obj].substring(0, item[obj].length - 1));
-				}
-			}
-
-			const response = fetch("mail.php", {
-				method: 'POST',
-				body: formData
-			});
-		}
-	}
-
 	serialize(form) {
 		let field, s = {};
 		let valueString = '';
@@ -276,8 +281,6 @@ if (textarea) {
 						valueString += field.value + ',';
 
 						s[field.name] = valueString;
-
-
 					}
 				}
 			}
@@ -285,6 +288,7 @@ if (textarea) {
 		return s
 	}
 }
+
 window.quiz = new Quiz('.quiz-form .quiz-questions', quizData, {
 	nextBtnText: "Следующий шаг",
 	sendBtnText: "Отправить",

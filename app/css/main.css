@@ -983,7 +983,7 @@ a {
   -o-transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
-@media (max-width: 576px) {
+@media (max-width: 1024px) {
   .product__btns {
     opacity: 1;
   }
