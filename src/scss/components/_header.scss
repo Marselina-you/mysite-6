@@ -52,9 +52,17 @@
 
     @include tablet {
 
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1000;
+      padding: 50px;
+      width: 70%;
+      height: 100vh;
+      background-color: var(--color-blue);
       display: none;
 
-     
+
 
       &--active {
         display: block;

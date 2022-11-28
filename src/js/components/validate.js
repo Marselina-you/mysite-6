@@ -1,3 +1,5 @@
+const { ModuleGraph } = require("webpack");
+
 let styles = getComputedStyle(document.documentElement);
 let colorValue = styles.getPropertyValue('--color-accent');
 
@@ -43,6 +45,8 @@ let validateForms = function(selector, rules, messages, successModal, yaGoal) {
         xhr.send(productsFormData);
 
         form.reset();
+
+        new GraphModal().close();
       } else {
         let formData = new FormData(form);
 
